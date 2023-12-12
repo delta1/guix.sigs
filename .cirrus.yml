@@ -3,7 +3,7 @@ container:
   cpu: 1
   memory: 1G
 lint_task:
-  use_compute_credits: $CIRRUS_REPO_OWNER == 'bitcoin-core'  # https://cirrus-ci.org/pricing/#compute-credits
+  use_compute_credits: $CIRRUS_REPO_OWNER == 'ElementsProject'  # https://cirrus-ci.org/pricing/#compute-credits
   # https://cirrus-ci.org/guide/writing-tasks/#conditional-task-execution: Skip needless compute on non-pulls
   skip: $CIRRUS_PR == ""
   stateful: false  # https://cirrus-ci.org/guide/writing-tasks/#stateful-tasks
@@ -11,7 +11,7 @@ lint_task:
   merge_base_script:
     - git fetch $CIRRUS_REPO_CLONE_URL "pull/${CIRRUS_PR}/merge"
     - git checkout FETCH_HEAD  # Derive full diff based on merge commit, see lint_script
- 
+
   cargo_target_cache:
     folder: out-dir
     fingerprint_script: git log -1 -- ./contrib/touched-files-check/ .cirrus.yml
